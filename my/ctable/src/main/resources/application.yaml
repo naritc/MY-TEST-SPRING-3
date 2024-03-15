@@ -1,0 +1,32 @@
+server:
+  port: 9102
+  servlet:
+    context-path: /api/v1/ctable
+
+springdoc:
+  version: '@springdoc.version@'
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+spring:
+  application:
+    name: ctable
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/dev_ctable
+    username: postgres
+    password: mysupersecretpassword
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      schema: ctable
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: POSTGRESQL

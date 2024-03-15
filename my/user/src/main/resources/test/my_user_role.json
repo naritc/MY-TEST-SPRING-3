@@ -1,0 +1,23 @@
+[
+	{
+		"my_user_role_id" : 1,
+		"active" : "A",
+		"created_datetime" : "2024-03-11T00:15:56.951Z",
+		"my_user_id" : null,
+		"role_id" : 1
+	},
+	{
+		"my_user_role_id" : 2,
+		"active" : "A",
+		"created_datetime" : "2024-03-11T00:27:02.728Z",
+		"my_user_id" : null,
+		"role_id" : 1
+	},
+	{
+		"my_user_role_id" : 3,
+		"active" : "A",
+		"created_datetime" : "2024-03-11T00:27:13.254Z",
+		"my_user_id" : null,
+		"role_id" : 1
+	}
+]

@@ -1,0 +1,117 @@
+openapi: 3.1.0
+info:
+  title: ctable
+  version: 1.0.0
+servers:
+  - url: http://localhost:{port}/api/{version}/ctable
+    variables:
+      port:
+        enum:
+          - "9102"
+        default: "9102"
+      version:
+        default: v1
+tags:
+  - name: "Reserve"
+paths:
+  /reserve:
+    post:
+      tags:
+        - "Reserve"
+      summary: "Reserve Table"
+      operationId: "reserve"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reserve'
+      responses:
+        default:
+          $ref: '#/components/responses/ResponseInternalError'
+        200:
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseReserve'
+
+components:
+  responses:
+    ResponseInternalError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DefaultError'
+    ResponseSuccess:
+      description: Successful
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DefaultSuccess'
+
+  schemas:
+    DefaultSuccess:
+      type: object
+      properties:
+        message:
+          type: string
+
+    DefaultError:
+      type: object
+      properties:
+        message:
+          type: string
+        stackTrace:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: "#/components/schemas/ValidateError"
+
+    ValidateError:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+
+    Reserve:
+      type: object
+      properties:
+        reserveDate:
+          type: string
+          format: date
+        reserveDetails:
+          type: array
+          items:
+            $ref: "#/components/schemas/ReserveDetail"
+
+    ReserveDetail:
+      type: object
+      properties:
+        reserveName:
+          type: string
+        mobileNo:
+          type: string
+        reserveDate:
+          type: string
+          format: date
+        reserveTime:
+          type: string
+          pattern: '^\d{2}:\d{2}'
+        exitTime:
+          type: string
+          pattern: '^\d{2}:\d{2}'
+        numberCustomer:
+          type: integer
+          minimum: 1
+
+    ResponseReserve:
+      type: object
+      properties:
+        message:
+          type: string
+        prepareTableNumber:
+          type: integer

@@ -1,0 +1,32 @@
+[
+	{
+		"my_user_id" : 1,
+		"active" : "A",
+		"created_datetime" : "2024-03-11T00:15:56.976Z",
+		"email" : "user1@test.com",
+		"first_name" : "fuser1",
+		"last_name" : "luser1",
+		"password" : "1234",
+		"username" : "user1"
+	},
+	{
+		"my_user_id" : 2,
+		"active" : "A",
+		"created_datetime" : "2024-03-11T00:27:02.738Z",
+		"email" : "user2@test.com",
+		"first_name" : "fuser2",
+		"last_name" : "luser2",
+		"password" : "1234",
+		"username" : "user2"
+	},
+	{
+		"my_user_id" : 3,
+		"active" : "A",
+		"created_datetime" : "2024-03-11T00:27:13.256Z",
+		"email" : "user3@test.com",
+		"first_name" : "fuser3",
+		"last_name" : "luser3",
+		"password" : "1234",
+		"username" : "user3"
+	}
+]

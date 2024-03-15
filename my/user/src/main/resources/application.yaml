@@ -1,0 +1,34 @@
+spring-doc:
+  api-docs:
+    path: /user/api-docs
+  swagger-ui:
+    path: /user/swagger-ui
+
+server:
+  port: 9101
+
+spring:
+  application:
+    name: user
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/dev_usermanagement
+    username: postgres
+    password: mysupersecretpassword
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      schema: user
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: POSTGRESQL
+
+app:
+  jwt:
+    secret:
+    expire-min: 60

@@ -1,0 +1,235 @@
+openapi: 3.1.0
+info:
+  title: user
+  version: 1.0.0
+servers:
+  - url: https://localhost:9001/api/v1/user
+    description: Local Development server
+tags:
+  - name: "Authentication"
+  - name: "User Management"
+paths:
+  /auth/register:
+    post:
+      tags:
+        - "Authentication"
+      summary: "User Register"
+      operationId: "userRegister"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterUser'
+      responses:
+        default:
+          $ref: '#/components/responses/ResponseInternalError'
+        200:
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseAuthentication'
+
+  /auth/authentication:
+    post:
+      tags:
+        - "Authentication"
+      summary: "User Authentication"
+      operationId: "userAuthentication"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestAuthentication'
+      responses:
+        default:
+          $ref: '#/components/responses/ResponseInternalError'
+        200:
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseAuthentication'
+
+  /user/getMyUser:
+    get:
+      tags:
+        - "User Management"
+      summary: "Get MyUser"
+      operationId: "getMyUser"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetMyUser'
+      responses:
+        default:
+          $ref: '#/components/responses/ResponseInternalError'
+        200:
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MyUser'
+
+
+  /user/getMyUsers:
+    get:
+      tags:
+        - "User Management"
+      summary: "Get MyUsers"
+      operationId: "getMyUsers"
+      responses:
+        default:
+          $ref: '#/components/responses/ResponseInternalError'
+        200:
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MyUsers'
+
+  /user/editMyUser:
+    patch:
+      tags:
+        - "User Management"
+      summary: "Edit MyUser"
+      operationId: "editMyUser"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MyUser'
+      responses:
+        default:
+          $ref: '#/components/responses/ResponseInternalError'
+        200:
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MyUser'
+
+  /user/disableMyUser:
+    delete:
+      tags:
+        - "User Management"
+      summary: "Disable MyUser"
+      operationId: "disableMyUser"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MyUser'
+      responses:
+        default:
+          $ref: '#/components/responses/ResponseInternalError'
+        200:
+          $ref: '#/components/responses/ResponseSuccess'
+
+components:
+  responses:
+    ResponseInternalError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DefaultError'
+    ResponseSuccess:
+      description: Successful
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DefaultSuccess'
+
+  schemas:
+    DefaultSuccess:
+      type: object
+      properties:
+        message:
+          type: string
+
+    DefaultError:
+      type: object
+      properties:
+        message:
+          type: string
+        stackTrace:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: "#/components/schemas/ValidateError"
+
+    ValidateError:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+
+    RegisterUser:
+      type: object
+      properties:
+        username:
+          type: string
+          x-field-extra-annotation: "@NotBlank"
+        email:
+          type: string
+          format: email
+          x-field-extra-annotation: "@Email"
+        password:
+          type: string
+          x-field-extra-annotation: "@NotBlank"
+        firstName:
+          type: string
+        lastName:
+          type: string
+
+    MyUser:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+
+    MyUsers:
+      type: object
+      properties:
+        myUsers:
+          type: array
+          items:
+            $ref: '#/components/schemas/MyUser'
+
+    GetMyUser:
+      type: object
+      properties:
+        username:
+          type: string
+
+    RequestAuthentication:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+
+    ResponseAuthentication:
+      type: object
+      properties:
+        accessToken:
+          type: string
+        refreshToken:
+          type: string
+
