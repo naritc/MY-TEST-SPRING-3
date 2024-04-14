@@ -1,4 +1,4 @@
-package my.micro.accounts.exception;
+package my.micro.accounts.config.exception;
 
 import my.micro.accounts.dto.ErrorResponseDto;
 import org.springframework.http.HttpHeaders;

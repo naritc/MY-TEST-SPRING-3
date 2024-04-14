@@ -1,4 +1,4 @@
-package my.micro.accounts.constants;
+package my.micro.accounts.config.constants;
 
 public final class AccountsConstants {
 

@@ -1,4 +1,4 @@
-package my.micro.accounts.audit;
+package my.micro.accounts.config.audit;
 
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.stereotype.Component;

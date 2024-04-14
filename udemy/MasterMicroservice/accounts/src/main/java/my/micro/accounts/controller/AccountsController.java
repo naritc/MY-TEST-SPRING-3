@@ -9,12 +9,12 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import lombok.RequiredArgsConstructor;
-import my.micro.accounts.constants.AccountsConstants;
+import my.micro.accounts.config.constants.AccountsConstants;
+import my.micro.accounts.config.properties.BuildProp;
 import my.micro.accounts.dto.CustomerDto;
 import my.micro.accounts.dto.ErrorResponseDto;
 import my.micro.accounts.dto.ResponseDto;
 import my.micro.accounts.service.IAccountsService;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -31,8 +31,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @Validated
 public class AccountsController {
-    @Value("${app.build.version}")
-    private String buildVersion;
+    private final BuildProp buildProp;
 
     private final Environment environment;
     private final IAccountsService iAccountsService;
@@ -185,7 +184,7 @@ public class AccountsController {
     public ResponseEntity<String> getBuildInfo() {
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(buildVersion);
+                .body(buildProp.getVersion());
     }
 
 

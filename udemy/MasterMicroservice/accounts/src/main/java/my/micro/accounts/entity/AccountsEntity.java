@@ -12,7 +12,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "accounts")
-public class Accounts extends BaseEntity {
+public class AccountsEntity extends BaseEntity {
     @Id
     @Column(name="account_number")
     private Long accountNumber;

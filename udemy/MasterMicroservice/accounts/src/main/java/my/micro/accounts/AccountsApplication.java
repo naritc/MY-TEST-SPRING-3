@@ -7,10 +7,10 @@ import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.info.License;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
-@SpringBootApplication
-@EnableJpaAuditing(auditorAwareRef = "auditAwareImpl")
+
 @OpenAPIDefinition(
 		info = @Info(
 				title = "Accounts microservice REST API Documentation",
@@ -31,6 +31,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 				url = "https://app.my.kube/accounts/swagger-ui.html"
 		)
 )
+
+@EnableJpaAuditing(auditorAwareRef = "auditAwareImpl")
+@ConfigurationPropertiesScan(basePackages = "my.micro.accounts.config.properties")
+@SpringBootApplication
 public class AccountsApplication {
 
 	public static void main(String[] args) {

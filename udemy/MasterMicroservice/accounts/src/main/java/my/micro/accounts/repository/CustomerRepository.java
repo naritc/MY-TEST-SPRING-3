@@ -1,15 +1,15 @@
 package my.micro.accounts.repository;
 
-import my.micro.accounts.entity.Customer;
+import my.micro.accounts.entity.CustomerEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface CustomerRepository extends JpaRepository<Customer, Long> {
+public interface CustomerRepository extends JpaRepository<CustomerEntity, Long> {
 
-    Optional<Customer> findByMobileNumber(String mobileNumber);
+    Optional<CustomerEntity> findByMobileNumber(String mobileNumber);
 
 
 }

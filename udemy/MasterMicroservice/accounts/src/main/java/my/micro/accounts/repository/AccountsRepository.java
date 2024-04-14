@@ -1,7 +1,7 @@
 package my.micro.accounts.repository;
 
 import jakarta.transaction.Transactional;
-import my.micro.accounts.entity.Accounts;
+import my.micro.accounts.entity.AccountsEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
@@ -9,9 +9,9 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface AccountsRepository extends JpaRepository<Accounts, Long> {
+public interface AccountsRepository extends JpaRepository<AccountsEntity, Long> {
 
-    Optional<Accounts> findByCustomerId(Long customerId);
+    Optional<AccountsEntity> findByCustomerId(Long customerId);
 
     @Transactional
     @Modifying
