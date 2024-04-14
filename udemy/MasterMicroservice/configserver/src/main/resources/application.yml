@@ -1,0 +1,16 @@
+server:
+  port: 8071
+
+spring:
+  application:
+    name: configserver
+  profiles:
+    #active: native
+    git: ""
+
+  cloud:
+    config:
+      server:
+        native:
+          #search-locations: "classpath:/config"
+          search-locations: "file:///Users//o_narit.c//WorkSpace//MY//MY-TEST-SPRING-3//udemy//MasterMicroservice//configserver//src//main//resources//config"
