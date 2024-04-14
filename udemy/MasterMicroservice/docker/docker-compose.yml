@@ -97,6 +97,8 @@ services:
         condition: service_healthy
       discoveryserver:
         condition: service_healthy
+      accountsdb:
+        condition: service_healthy
     healthcheck:
       test: "curl --fail --silent localhost:8080/actuator/health/readiness | grep UP || exit 1"
       interval: 10s
