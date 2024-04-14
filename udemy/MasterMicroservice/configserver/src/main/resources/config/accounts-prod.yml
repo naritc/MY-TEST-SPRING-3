@@ -5,4 +5,4 @@ spring:
 
 app:
   build:
-    version: "1.0-prod"
+    version: {cipher}0f15d10437b2daa5dde50467e704c9c5a7d40809bd9c8096f0f47c5068c12fef
