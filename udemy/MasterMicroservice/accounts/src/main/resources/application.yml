@@ -3,13 +3,10 @@ server:
 
 spring:
   application:
-    name: accounts
-
-  config:
-    import: "optional:configserver:http://localhost:8071/"
+    name: "accounts"
 
   profiles:
-    active: dev
+    active: "prod"
 
   datasource:
     url: jdbc:h2:mem:testdb
@@ -25,12 +22,17 @@ spring:
       ddl-auto: update
     show-sql: true
 
+  config:
+    import: "optional:configserver:http://localhost:8071/"
+
+  rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: "guest"
+    password: "guest"
+
 management:
   endpoints:
     web:
       exposure:
         include: "*"
-
-app:
-  build:
-    version: "1.0-Dev"
