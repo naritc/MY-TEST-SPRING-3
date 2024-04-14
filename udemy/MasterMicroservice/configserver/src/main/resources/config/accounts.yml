@@ -36,4 +36,4 @@ management:
 
 app:
   build:
-    version: "1.0-Dev"
+    version: "1.1-Dev"
