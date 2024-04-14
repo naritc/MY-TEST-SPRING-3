@@ -1,4 +1,38 @@
+networks:
+  mymicro:
+    driver: "bridge"
+
 services:
+  accountsdb:
+    container_name: accountsdb
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: accountsdb
+    extends:
+      file: common-config.yml
+      service: microservice-db-config
+
+  loansdb:
+    container_name: loansdb
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_DATABASE: loansdb
+    extends:
+      file: common-config.yml
+      service: microservice-db-config
+
+  cardsdb:
+    container_name: cardsdb
+    ports:
+      - 3308:3306
+    environment:
+      MYSQL_DATABASE: cardsdb
+    extends:
+      file: common-config.yml
+      service: microservice-db-config
+
   rabbit:
     image: rabbitmq:3.13-management
     hostname: rabbitmq
@@ -33,6 +67,26 @@ services:
       file: common-config.yml
       service: microservice-base-config
 
+  discoveryserver:
+    image: "my.micro/discoveryserver:0.0.1-SNAPSHOT"
+    container_name: discoveryserver-ms
+    ports:
+      - "8070:8070"
+    depends_on:
+      configserver:
+        condition: service_healthy
+    healthcheck:
+      test: "curl --fail --silent localhost:8070/actuator/health/readiness | grep UP || exit 1"
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    extends:
+      file: common-config.yml
+      service: microservice-configserver-config
+    environment:
+      SPRING_APPLICATION_NAME: "discoveryserver"
+
   accounts:
     image: "my.micro/accounts:0.0.1-SNAPSHOT"
     container_name: accounts-ms
@@ -41,12 +95,16 @@ services:
     depends_on:
       configserver:
         condition: service_healthy
+      discoveryserver:
+        condition: service_healthy
+    healthcheck:
+      test: "curl --fail --silent localhost:8080/actuator/health/readiness | grep UP || exit 1"
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
     environment:
       SPRING_APPLICATION_NAME: "accounts"
     extends:
       file: common-config.yml
-      service: microservice-configserver-config
-
-networks:
-  mymicro:
-    driver: "bridge"
+      service: microservice-discovery-config
