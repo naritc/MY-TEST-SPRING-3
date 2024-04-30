@@ -50,7 +50,7 @@ services:
       service: network-deploy-service
 
   configserver:
-    image: "my.micro/configserver:0.0.1-SNAPSHOT"
+    image: "naritccc/my.micro.configserver:0.0.1-SNAPSHOT"
     container_name: configserver-ms
     ports:
       - "8071:8071"
@@ -68,7 +68,7 @@ services:
       service: microservice-base-config
 
   discoveryserver:
-    image: "my.micro/discoveryserver:0.0.1-SNAPSHOT"
+    image: "naritccc/my.micro.discoveryserver:0.0.1-SNAPSHOT"
     container_name: discoveryserver-ms
     ports:
       - "8070:8070"
@@ -88,7 +88,7 @@ services:
       SPRING_APPLICATION_NAME: "discoveryserver"
 
   accounts:
-    image: "my.micro/accounts:0.0.1-SNAPSHOT"
+    image: "naritccc/my.micro.accounts:0.0.1-SNAPSHOT"
     container_name: accounts-ms
     ports:
       - "8080:8080"

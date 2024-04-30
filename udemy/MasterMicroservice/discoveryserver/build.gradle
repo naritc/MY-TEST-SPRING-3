@@ -5,6 +5,7 @@ plugins {
 	id 'com.google.cloud.tools.jib' version '3.4.2'
 }
 
+def imageRegistry = 'naritccc'
 group = 'my.micro'
 version = '0.0.1-SNAPSHOT'
 
@@ -39,9 +40,14 @@ tasks.named('test') {
 
 jib {
 	from {
-		image = 'amazoncorretto:17.0.10-al2023-headless'
+		image = 'eclipse-temurin:17.0.11_9-jre-jammy'
 	}
 	to {
-		image = "${project.group}/${project.name}:${project.version}"
+		image = "${imageRegistry}/${project.group}.${project.name}:${project.version}"
 	}
 }
+
+//tasks.named("bootBuildImage") {
+//	imageName = "${imageRegistry}/${project.group}.${project.name}:${project.version}"
+//	builder = "paketobuildpacks/builder-jammy-tiny:latest"
+//}
