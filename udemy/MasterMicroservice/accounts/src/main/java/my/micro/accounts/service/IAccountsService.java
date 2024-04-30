@@ -1,4 +1,5 @@
 package my.micro.accounts.service;
+
 import my.micro.accounts.dto.CustomerDto;
 
 public interface IAccountsService {

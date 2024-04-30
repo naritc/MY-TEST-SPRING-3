@@ -23,11 +23,24 @@ repositories {
 	mavenCentral()
 }
 
+ext {
+	set('springCloudVersion', "2023.0.1")
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0'
+
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.h2database:h2'
@@ -41,7 +54,7 @@ tasks.named('test') {
 
 jib {
 	from {
-		image = "openjdk:alpine"
+		image = 'eclipse-temurin:17.0.11_9-jre-jammy'
 	}
 	to {
 		image = "${imageRegistry}/${project.group}.${project.name}:${project.version}"

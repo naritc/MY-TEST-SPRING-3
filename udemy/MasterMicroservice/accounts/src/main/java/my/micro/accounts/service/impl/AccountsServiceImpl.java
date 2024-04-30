@@ -1,22 +1,21 @@
 package my.micro.accounts.service.impl;
 
+import java.util.Optional;
+import java.util.Random;
 import lombok.AllArgsConstructor;
 import my.micro.accounts.config.constants.AccountsConstants;
+import my.micro.accounts.config.exception.CustomerAlreadyExistsException;
+import my.micro.accounts.config.exception.ResourceNotFoundException;
 import my.micro.accounts.dto.AccountsDto;
 import my.micro.accounts.dto.CustomerDto;
 import my.micro.accounts.entity.AccountsEntity;
 import my.micro.accounts.entity.CustomerEntity;
-import my.micro.accounts.config.exception.CustomerAlreadyExistsException;
-import my.micro.accounts.config.exception.ResourceNotFoundException;
 import my.micro.accounts.mapper.AccountsMapper;
 import my.micro.accounts.mapper.CustomerMapper;
 import my.micro.accounts.repository.AccountsRepository;
 import my.micro.accounts.repository.CustomerRepository;
 import my.micro.accounts.service.IAccountsService;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
-import java.util.Random;
 
 @Service
 @AllArgsConstructor

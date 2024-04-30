@@ -1,5 +1,8 @@
 package my.micro.loans.service.impl;
 
+import java.util.Optional;
+import java.util.Random;
+import lombok.AllArgsConstructor;
 import my.micro.loans.constants.LoansConstants;
 import my.micro.loans.dto.LoansDto;
 import my.micro.loans.entity.Loans;
@@ -8,11 +11,7 @@ import my.micro.loans.exception.ResourceNotFoundException;
 import my.micro.loans.mapper.LoansMapper;
 import my.micro.loans.repository.LoansRepository;
 import my.micro.loans.service.ILoansService;
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
-import java.util.Random;
 
 @Service
 @AllArgsConstructor
