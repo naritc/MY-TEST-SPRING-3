@@ -1,6 +1,12 @@
 server:
   port: 8080
 
+logging:
+  level:
+    my:
+      micro:
+        accounts: DEBUG
+
 spring:
   application:
     name: "accounts"
@@ -10,12 +16,6 @@ spring:
 
   config:
     import: "optional:configserver:http://localhost:8071/"
-
-  logging:
-    level:
-      my:
-        micro:
-          accounts: DEBUG
 
   datasource:
     url: jdbc:mysql://accountsdb:3306/accountsdb?allowPublicKeyRetrieval=true&useSSL=false

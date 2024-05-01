@@ -1,7 +1,3 @@
-networks:
-  mymicro:
-    driver: "bridge"
-
 services:
   accountsdb:
     container_name: accountsdb
@@ -176,3 +172,7 @@ services:
     extends:
       file: common-config.yml
       service: microservice-discovery-config
+
+networks:
+  mymicro:
+    driver: "bridge"
